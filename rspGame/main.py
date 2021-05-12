@@ -1,9 +1,9 @@
 import client
 
 # client.HOST = '127.0.0.1'
-# print(client.HOST)
 
 # client.StartClient()
+your_select = ""
 
 def ConnectGame():
     client.HOST = str(input("호스트의 IP 주소를 입력해주세요: "))
@@ -11,9 +11,6 @@ def ConnectGame():
 
     client.Checking()
 
-ConnectGame()
-
-your_select = ""
 
 def PlzInput():
     global your_select
@@ -28,10 +25,13 @@ def PlzInput():
         return
     else: PlzInput()
 
+
 def StartGame():
     global your_select
 
     PlzInput()
     print(your_select)
 
+
+ConnectGame()
 StartGame()

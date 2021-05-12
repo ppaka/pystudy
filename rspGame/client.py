@@ -1,4 +1,3 @@
-
 # 소켓을 사용하기 위해서는 socket을 import해야 한다.
 import socket
 # 로컬은 127.0.0.1의 ip로 접속한다.
