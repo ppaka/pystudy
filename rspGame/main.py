@@ -1,18 +1,16 @@
 import client
 
 # client.HOST = '127.0.0.1'
-
-# client.StartClient()
 your_select = ""
 
-def ConnectGame():
+
+def connect_game():
     client.HOST = str(input("호스트의 IP 주소를 입력해주세요: "))
-    client.StartClient()
+    client.start_client()
+    client.checking()
 
-    client.Checking()
 
-
-def PlzInput():
+def plz_input():
     global your_select
 
     your_select = str(input("가위, 바위, 보 중에 하나 입력해주세요: "))
@@ -23,15 +21,16 @@ def PlzInput():
         return
     elif your_select == "보":
         return
-    else: PlzInput()
+    else:
+        plz_input()
 
 
-def StartGame():
+def start_game():
     global your_select
 
-    PlzInput()
+    plz_input()
     print(your_select)
 
 
-ConnectGame()
-StartGame()
+connect_game()
+# start_game()
