@@ -10,13 +10,13 @@ gameOver = False
 def game():
     global gameOver
 
-    if player_cs_left >= 5:
+    if player_cs_left == 0 and player_cs_right == 0:
         gameOver = True
-    elif player_cs_right >= 5:
+    elif player_cs_right == 0 and player_cs_left == 0:
         gameOver = True
-    elif computer_cs_left >= 5:
+    elif computer_cs_left == 0 and computer_cs_right == 0:
         gameOver = True
-    elif computer_cs_right >= 5:
+    elif computer_cs_right == 0 and computer_cs_left == 0:
         gameOver = True
 
 
@@ -84,10 +84,10 @@ def add_cs(selected_hand, target_hand, now_turn):
         elif now_turn == "player2":
             player_cs_right += computer_cs_right
 
-    if player_cs_left > 5:  player_cs_left = 5
-    if player_cs_right > 5:  player_cs_right = 5
-    if computer_cs_left > 5:  computer_cs_left = 5
-    if computer_cs_right > 5:  computer_cs_right = 5
+    if player_cs_left >= 5:  player_cs_left = 0
+    if player_cs_right >= 5:  player_cs_right = 0
+    if computer_cs_left >= 5:  computer_cs_left = 0
+    if computer_cs_right >= 5:  computer_cs_right = 0
 
     print("내 손가락:", player_cs_left, player_cs_right, "상대 손가락:", computer_cs_left, computer_cs_right)
     if now_turn == "player1":
@@ -96,6 +96,16 @@ def add_cs(selected_hand, target_hand, now_turn):
         player_turn = 1
     
     game()
+
+
+def separate():
+    selected = input("[나눠질 결과를 적어주세요(각 손은 ,로 구분)]")
+    splited = selected.split(',')
+    both = splited[0] + splited[1]
+    if both == (player_cs_left + player_cs_right):
+        player_cs_left = splited[0]
+        player_cs_right = splited[1]
+        print("내 손가락:", player_cs_left, player_cs_right, "상대 손가락:", computer_cs_left, computer_cs_right)
 
 
 def start():
