@@ -3,21 +3,16 @@ player_cs_right = 1
 computer_cs_left = 1
 computer_cs_right = 1
 
-player_turn = 1
-gameOver = False
-
 
 def game():
-    global gameOver
-
     if player_cs_left >= 5:
-        gameOver = True
+        print("GameOver")
     elif player_cs_right >= 5:
-        gameOver = True
+        print("GameOver")
     elif computer_cs_left >= 5:
-        gameOver = True
+        print("GameOver")
     elif computer_cs_right >= 5:
-        gameOver = True
+        print("GameOver")
 
 
 def get_player_input():
@@ -61,7 +56,7 @@ def get_second_player_input():
 
 
 def add_cs(selected_hand, target_hand, now_turn):
-    global computer_cs_left, player_cs_left, computer_cs_right, player_cs_right, player_turn
+    global computer_cs_left, player_cs_left, computer_cs_right, player_cs_right
 
     if selected_hand == "left" and target_hand == "left":
         if now_turn == "player1":
@@ -72,7 +67,7 @@ def add_cs(selected_hand, target_hand, now_turn):
         if now_turn == "player1":
             computer_cs_right += player_cs_left
         elif now_turn == "player2":
-            player_cs_right += computer_cs_left
+            player_cs_left += computer_cs_right
     elif selected_hand == "right" and target_hand == "left":
         if now_turn == "player1":
             computer_cs_left += player_cs_right
@@ -84,26 +79,10 @@ def add_cs(selected_hand, target_hand, now_turn):
         elif now_turn == "player2":
             player_cs_right += computer_cs_right
 
-    if player_cs_left > 5:  player_cs_left = 5
-    if player_cs_right > 5:  player_cs_right = 5
-    if computer_cs_left > 5:  computer_cs_left = 5
-    if computer_cs_right > 5:  computer_cs_right = 5
-
     print("내 손가락:", player_cs_left, player_cs_right, "상대 손가락:", computer_cs_left, computer_cs_right)
-    if now_turn == "player1":
-        player_turn = 2
-    elif now_turn == "player2":
-        player_turn = 1
-    
     game()
 
 
-def start():
-    while gameOver == False:
-        if player_turn == 1:
-            get_player_input()
-        elif player_turn == 2:
-            get_second_player_input()
+get_player_input()
+get_second_player_input()
 
-
-start()
