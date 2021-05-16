@@ -20,6 +20,20 @@ def game():
         gameOver = True
 
 
+def select_what_to_do():
+    the_select = str(input("[공격, 나누기 중에 하나를 골라주세요]"))
+    if the_select == "공격":
+        if player_turn == 1:
+            get_player_input()
+        elif player_turn == 2:
+            get_second_player_input()
+    elif the_select == "나누기":
+        if player_turn == 1:
+            separate("player1")
+        elif player_turn == 2:
+            separate("player2")
+
+
 def get_player_input():
     hand = str(input("[플레이어1, 당신의 왼손, 오른손 중에 하나를 입력해주세요]"))
 
@@ -84,36 +98,49 @@ def add_cs(selected_hand, target_hand, now_turn):
         elif now_turn == "player2":
             player_cs_right += computer_cs_right
 
-    if player_cs_left >= 5:  player_cs_left = 0
-    if player_cs_right >= 5:  player_cs_right = 0
-    if computer_cs_left >= 5:  computer_cs_left = 0
-    if computer_cs_right >= 5:  computer_cs_right = 0
+    if player_cs_left >= 5:
+        player_cs_left = 0
+    if player_cs_right >= 5:
+        player_cs_right = 0
+    if computer_cs_left >= 5:
+        computer_cs_left = 0
+    if computer_cs_right >= 5:
+        computer_cs_right = 0
 
     print("내 손가락:", player_cs_left, player_cs_right, "상대 손가락:", computer_cs_left, computer_cs_right)
     if now_turn == "player1":
         player_turn = 2
     elif now_turn == "player2":
         player_turn = 1
-    
+
     game()
 
 
-def separate():
+def separate(now_turn):
+    global player_cs_right, player_cs_left, computer_cs_left, computer_cs_right, player_turn
     selected = input("[나눠질 결과를 적어주세요(각 손은 ,로 구분)]")
     splited = selected.split(',')
     both = splited[0] + splited[1]
-    if both == (player_cs_left + player_cs_right):
-        player_cs_left = splited[0]
-        player_cs_right = splited[1]
-        print("내 손가락:", player_cs_left, player_cs_right, "상대 손가락:", computer_cs_left, computer_cs_right)
+    if now_turn == "player1":
+        if both == (player_cs_left + player_cs_right):
+            player_cs_left = splited[0]
+            player_cs_right = splited[1]
+            print("내 손가락:", player_cs_left, player_cs_right, "상대 손가락:", computer_cs_left, computer_cs_right)
+    elif now_turn == "player2":
+        if both == (computer_cs_left + computer_cs_right):
+            computer_cs_left = splited[0]
+            computer_cs_right = splited[1]
+            print("내 손가락:", player_cs_left, player_cs_right, "상대 손가락:", computer_cs_left, computer_cs_right)
+
+    if now_turn == "player1":
+        player_turn = 2
+    elif now_turn == "player2":
+        player_turn = 1
 
 
 def start():
-    while gameOver == False:
-        if player_turn == 1:
-            get_player_input()
-        elif player_turn == 2:
-            get_second_player_input()
+    while not gameOver:
+        select_what_to_do()
 
 
 start()
