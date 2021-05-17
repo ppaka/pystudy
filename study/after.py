@@ -11,7 +11,7 @@ def count_up():
 
 
 root = tkinter.Tk()
-label = tkinter.Label(font = ("Times New Roman", 1080))
+label = tkinter.Label(font = ("Times New Roman", 400))
 label.pack()
 root.after(1000, count_up)
 root.mainloop()
