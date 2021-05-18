@@ -50,7 +50,7 @@ def get_first_player_input():
             add_cs("right", "right", "player1")
     else:
         print("[올바른 입력이 아닙니다. 다시 입력해주세요]\n")
-        get_player_input()
+        get_first_player_input()
 
 
 def get_second_player_input():
@@ -70,7 +70,7 @@ def get_second_player_input():
             add_cs("right", "right", "player2")
     else:
         print("[올바른 입력이 아닙니다. 다시 입력해주세요]\n")
-        get_player_input()
+        get_first_player_input()
 
 
 def add_cs(selected_hand, target_hand, now_turn):
@@ -124,7 +124,8 @@ def separate(now_turn):
         if both == (player_cs_left + player_cs_right):
             player_cs_left = splited[0]
             player_cs_right = splited[1]
-            print("플레이어1 손가락:", player_cs_left, player_cs_right, "플레이어2 손가락:", player_second_cs_left, player_second_cs_right)
+            print("플레이어1 손가락:", player_cs_left, player_cs_right, "플레이어2 손가락:", player_second_cs_left,
+                  player_second_cs_right)
         else:
             print("[올바른 입력이 아닙니다. 다시 입력해주세요]\n")
             separate("player1")
@@ -132,7 +133,8 @@ def separate(now_turn):
         if both == (player_second_cs_left + player_second_cs_right):
             player_second_cs_left = splited[0]
             player_second_cs_right = splited[1]
-            print("플레이어1 손가락:", player_cs_left, player_cs_right, "플레이어2 손가락:", player_second_cs_left, player_second_cs_right)
+            print("플레이어1 손가락:", player_cs_left, player_cs_right, "플레이어2 손가락:", player_second_cs_left,
+                  player_second_cs_right)
         else:
             print("[올바른 입력이 아닙니다. 다시 입력해주세요]\n")
             separate("player2")
