@@ -14,6 +14,9 @@ class Car:
     # def speed_down(self, amount):
     #     self.speed -= amount
 
+    def stop(self):
+        print(self.type + "가 멈췄습니다.")
+
     @classmethod
     def get_count(cls):
         return cls.count
